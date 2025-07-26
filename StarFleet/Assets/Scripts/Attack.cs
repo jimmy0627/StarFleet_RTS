@@ -11,14 +11,19 @@ public class Attack : MonoBehaviour
     private GameObject attacking;
     private CircleCollider2D FireCircle;
     private Coroutine attackRoutine;
-    public float FireRange;
-    public int CD;
-    public float accurcy;
-    public float damage;
+    private float FireRange;
+    private int CD;
+    private float accurcy;
+    private float damage;
 
     //設置攻擊範圍
     void Start()
     {
+        FireRange = transform.parent.GetComponent<ShipBase>().FireRange;
+        CD = transform.parent.GetComponent<ShipBase>().CD;
+        accurcy = transform.parent.GetComponent<ShipBase>().accurcy;
+        damage = transform.parent.GetComponent<ShipBase>().damage;
+
 
         FireCircle = gameObject.GetComponent<CircleCollider2D>();
         FireCircle.radius = FireRange;
@@ -27,7 +32,7 @@ public class Attack : MonoBehaviour
     //進入攻擊範圍，加入目標名單
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")!=transform.parent.GetComponent<ShipBase>().isEnemy)
         {
             Targetlist.Add(collision.transform.gameObject);
         }
@@ -66,10 +71,6 @@ public class Attack : MonoBehaviour
                 attacking.GetComponent<Health>().HP -= damage;
             }
             Debug.Log("attacking:" + attacking.transform.parent.name + "  hull=" + hull);
-            if (hull <= 0)
-            {
-                Targetlist.Remove(attacking);
-            }
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
