@@ -81,14 +81,18 @@ public class Attack : MonoBehaviour
     {
         int maxshiptype = int.MinValue;
         GameObject HVT = null;
-        foreach (var target in Targetlist)
+        if (Targetlist!=null)
         {
-            if (target.GetComponent<Health>().Shiptype >= maxshiptype)
+            foreach (var target in Targetlist)
             {
-                maxshiptype = target.GetComponent<Health>().Shiptype;
-                HVT = target;
+                if (target.GetComponent<Health>().Shiptype >= maxshiptype)
+                {
+                    maxshiptype = target.GetComponent<Health>().Shiptype;
+                    HVT = target;
+                }
             }
         }
+
         return HVT;
     }
     

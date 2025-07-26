@@ -21,12 +21,13 @@ public class EnemyAI : MonoBehaviour
             Target = gameObject.transform.Find("Radar").GetComponent<Senscor>().Radarimage[0];
             distance = Vector2.Distance(transform.position, Target.position);
             Vector2 DIR = Target.position - transform.position;
-            transform.position = Vector2.MoveTowards(this.transform.position, DIR, speed * Time.deltaTime);
-
             if (distance < FireRange)
             {
-                
+                DIR = transform.position;
             }
+            transform.position = Vector2.MoveTowards(this.transform.position, DIR, speed * Time.deltaTime);
+
+
         }
 
     }

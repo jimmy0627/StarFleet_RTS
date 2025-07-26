@@ -20,10 +20,14 @@ public class Senscor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")!=transform.parent.GetComponent<ShipBase>().isEnemy)
+        if (collision.gameObject.name=="Health")
         {
-            Radarimage.Add(collision.transform);  //進入碰撞圈，加入雷達範圍
+            if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+            {
+                Radarimage.Add(collision.transform);  //進入碰撞圈，加入雷達範圍
+            } 
         }
+
 
     }
 
