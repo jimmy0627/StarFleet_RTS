@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4102666491186270406}
   m_Layer: 0
   m_Name: Health
-  m_TagString: Enemy
+  m_TagString: Self
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5719809255640099344}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Self
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,10 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targetlist: []
-  FireRange: 3
-  CD: 1
-  accurcy: 100
-  damage: 0
 --- !u!1 &3073972671640968625
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +179,7 @@ GameObject:
   - component: {fileID: 7068038349832037854}
   m_Layer: 0
   m_Name: Hull
-  m_TagString: Self
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +330,7 @@ GameObject:
   - component: {fileID: 7463098962726379815}
   m_Layer: 0
   m_Name: Radar
-  m_TagString: Untagged
+  m_TagString: Self
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -404,6 +400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Radarimage: []
   Radarsize: 3
+  IFF: 0
 --- !u!1 &7946403038104798754
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,9 +412,10 @@ GameObject:
   - component: {fileID: 4909667575375087433}
   - component: {fileID: 7436769732094435129}
   - component: {fileID: 4362608888107521916}
+  - component: {fileID: 2873749574401740416}
   m_Layer: 0
   m_Name: Playership
-  m_TagString: Untagged
+  m_TagString: Self
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -484,3 +482,23 @@ MonoBehaviour:
   minSize: 1
   maxSize: 10
   scrollspeed: 0
+--- !u!114 &2873749574401740416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946403038104798754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b76c81f95a57e4fbb13b37c1ae06d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireRange: 3
+  CD: 1
+  accurcy: 100
+  damage: 1
+  speed: 1
+  RadarSize: 5
+  HP: 10
+  isEnemy: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,7 +10,6 @@ public class Attack : MonoBehaviour
     //可調整變數如下:CD=冷卻時間，accurcy=準確度，damage=傷害
     public List<GameObject> Targetlist = new List<GameObject>();
     private GameObject attacking;
-    private CircleCollider2D FireCircle;
     private Coroutine attackRoutine;
     private float FireRange;
     private int CD;
@@ -23,40 +23,29 @@ public class Attack : MonoBehaviour
         CD = transform.parent.GetComponent<ShipBase>().CD;
         accurcy = transform.parent.GetComponent<ShipBase>().accurcy;
         damage = transform.parent.GetComponent<ShipBase>().damage;
-
-
-        FireCircle = gameObject.GetComponent<CircleCollider2D>();
-        FireCircle.radius = FireRange;
     }
 
-    //進入攻擊範圍，加入目標名單
-    void OnTriggerEnter2D(Collider2D collision)
+    void Update()
     {
-        if (collision.gameObject.CompareTag("Enemy")!=transform.parent.GetComponent<ShipBase>().isEnemy)
+        foreach (var target in transform.parent.Find("Radar").GetComponent<Senscor>().Radarimage)
         {
-            Targetlist.Add(collision.transform.gameObject);
-        }
-    }
+            var DIS = Vector2.Distance(transform.position, target.position);
+            if (DIS < FireRange && !Targetlist.Contains(target.gameObject))
+            {
+                Targetlist.Add(target.gameObject);
 
-    //取得優先級最高的進入攻擊循環
-    void OnTriggerStay2D(Collider2D collision)
-    {
+            }
+            if (DIS > FireRange && Targetlist.Contains(target.gameObject))
+            {
+                Targetlist.Remove(target.gameObject);
+            }
+        }
         if (attacking == null)
         {
             attacking = MaxByShipType(Targetlist);
             attackRoutine = StartCoroutine(AttackTarget());
         }
-    }
 
-    //目標離開攻擊範圍，移出目標清單
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject == attacking)
-        {
-            attacking = null;
-            StopCoroutine(attackRoutine);
-        }
-        Targetlist.Remove(collision.gameObject);
     }
 
     //攻擊循環，判斷是否命中後扣血，並在每次攻擊循環中重新尋找優先級最高的目標
@@ -81,15 +70,12 @@ public class Attack : MonoBehaviour
     {
         int maxshiptype = int.MinValue;
         GameObject HVT = null;
-        if (Targetlist!=null)
+        foreach (var target in Targetlist)
         {
-            foreach (var target in Targetlist)
+            if (target.GetComponent<Health>().Shiptype >= maxshiptype)
             {
-                if (target.GetComponent<Health>().Shiptype >= maxshiptype)
-                {
-                    maxshiptype = target.GetComponent<Health>().Shiptype;
-                    HVT = target;
-                }
+                maxshiptype = target.GetComponent<Health>().Shiptype;
+                HVT = target;
             }
         }
 
