@@ -10,4 +10,5 @@ public class ShipBase : MonoBehaviour
     public float RadarSize;
     public float HP;
     public bool isEnemy;
+    public int Shiptype;
 }

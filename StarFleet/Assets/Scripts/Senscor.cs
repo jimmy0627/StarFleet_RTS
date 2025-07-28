@@ -33,7 +33,7 @@ public class Senscor : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")!=transform.parent.GetComponent<ShipBase>().isEnemy)
+        if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
         {
             Radarimage.Remove(collision.transform);
         }

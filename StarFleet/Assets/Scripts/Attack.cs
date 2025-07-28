@@ -29,6 +29,8 @@ public class Attack : MonoBehaviour
     {
         foreach (var target in transform.parent.Find("Radar").GetComponent<Senscor>().Radarimage)
         {
+            if (target == null) continue;
+
             var DIS = Vector2.Distance(transform.position, target.position);
             if (DIS < FireRange && !Targetlist.Contains(target.gameObject))
             {
@@ -40,6 +42,7 @@ public class Attack : MonoBehaviour
                 Targetlist.Remove(target.gameObject);
             }
         }
+        Targetlist.RemoveAll(t => t == null);
         if (attacking == null)
         {
             attacking = MaxByShipType(Targetlist);

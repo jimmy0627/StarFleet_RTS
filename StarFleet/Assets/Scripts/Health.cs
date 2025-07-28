@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         HP = transform.parent.GetComponent<ShipBase>().HP;
+        Shiptype = transform.parent.GetComponent<ShipBase>().Shiptype;
     }
     void FixedUpdate()
     {
