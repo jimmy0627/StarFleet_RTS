@@ -219,6 +219,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1902887126970440703, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: Shiptype
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469772324903845271, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469772324903845271, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: Shiptype
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469772324903845271, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: FireRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770724223954517795, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3657610618284413712, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.2
@@ -263,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy ship (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7887532362129302298, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -279,6 +303,22 @@ PrefabInstance:
     - target: {fileID: 1902887126970440703, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
       propertyPath: Shiptype
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469772324903845271, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469772324903845271, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: Shiptype
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2469772324903845271, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: FireRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770724223954517795, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3657610618284413712, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,6 +368,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7887532362129302298, guid: 4a849ec0e14952e4eae9d5c3bb1e3efe, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -341,25 +385,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1704228580184829181, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
-      propertyPath: m_TagString
-      value: Self
-      objectReference: {fileID: 0}
-    - target: {fileID: 2143459773380204905, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
-      propertyPath: m_TagString
-      value: Self
-      objectReference: {fileID: 0}
-    - target: {fileID: 3073972671640968625, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 3413505912327521039, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
-      propertyPath: m_TagString
-      value: Self
-      objectReference: {fileID: 0}
-    - target: {fileID: 4102666491186270406, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
-      propertyPath: Shiptype
+    - target: {fileID: 2873749574401740416, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
+      propertyPath: damage
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4362608888107521916, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
+      propertyPath: speed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4909667575375087433, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -404,10 +436,6 @@ PrefabInstance:
     - target: {fileID: 7946403038104798754, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
       propertyPath: m_Name
       value: Playership
-      objectReference: {fileID: 0}
-    - target: {fileID: 7946403038104798754, guid: 0557e010a8186db469f9908aa58f07d0, type: 3}
-      propertyPath: m_TagString
-      value: Self
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

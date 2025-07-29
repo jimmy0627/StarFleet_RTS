@@ -43,7 +43,7 @@ public class Attack : MonoBehaviour
             }
         }
         Targetlist.RemoveAll(t => t == null);
-        if (attacking == null)
+        if (attacking == null && attackRoutine == null)
         {
             attacking = MaxByShipType(Targetlist);
             attackRoutine = StartCoroutine(AttackTarget());
@@ -66,6 +66,7 @@ public class Attack : MonoBehaviour
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
+        attackRoutine = null;
     }
 
     //尋找優先級最高的目標
@@ -101,3 +102,4 @@ public class Attack : MonoBehaviour
         return HVT;
     }
 }
+
