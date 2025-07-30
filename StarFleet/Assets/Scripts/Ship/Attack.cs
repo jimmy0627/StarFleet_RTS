@@ -92,9 +92,9 @@ public class Attack : MonoBehaviour
         GameObject HVT = null;
         foreach (var target in Targetlist)
         {
-            if (target.GetComponent<Health>().Shiptype >= minshiptype)
+            if (target.GetComponent<ShipBase>().Shiptype >= minshiptype)
             {
-                minshiptype = target.GetComponent<Health>().Shiptype;
+                minshiptype = target.GetComponent<ShipBase>().Shiptype;
                 HVT = target;
             }
         }
