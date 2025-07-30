@@ -11,4 +11,15 @@ public class ShipBase : MonoBehaviour
     public float HP;
     public bool isEnemy;
     public int Shiptype;
+    void Start()
+    {
+        
+    }
+    void FixedUpdate()
+    {
+        if (HP <= 0)
+        {
+            Destroy(transform.gameObject);
+        }
+    }
 }

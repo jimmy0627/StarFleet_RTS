@@ -56,13 +56,13 @@ public class Attack : MonoBehaviour
     {
         while (attacking != null)
         {
-            var hull = attacking.GetComponent<Health>().HP;
+            var hull = attacking.GetComponent<ShipBase>().HP;
             var aim = Random.Range(0, 100);
             if (aim <= accurcy)
             {
-                attacking.GetComponent<Health>().HP -= damage;
+                hull=0;
             }
-            Debug.Log("attacking:" + attacking.transform.parent.name + "  hull=" + hull);
+            Debug.Log("attacking:" + attacking.name + "  hull=" + hull);
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
@@ -76,9 +76,9 @@ public class Attack : MonoBehaviour
         GameObject HVT = null;
         foreach (var target in Targetlist)
         {
-            if (target.GetComponent<Health>().Shiptype >= maxshiptype)
+            if (target.GetComponent<ShipBase>().Shiptype>= maxshiptype)
             {
-                maxshiptype = target.GetComponent<Health>().Shiptype;
+                maxshiptype = target.GetComponent<ShipBase>().Shiptype;
                 HVT = target;
             }
         }

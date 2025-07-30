@@ -20,7 +20,7 @@ public class Senscor : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name=="Health")
+        if (collision.transform.GetComponent<ShipBase>()!=null)
         {
             if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
             {
