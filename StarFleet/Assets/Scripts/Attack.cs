@@ -56,13 +56,12 @@ public class Attack : MonoBehaviour
     {
         while (attacking != null)
         {
-            var hull = attacking.GetComponent<ShipBase>().HP;
             var aim = Random.Range(0, 100);
             if (aim <= accurcy)
             {
-                hull=0;
+                attacking.GetComponent<ShipBase>().HP -= damage;
             }
-            Debug.Log("attacking:" + attacking.name + "  hull=" + hull);
+            Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
