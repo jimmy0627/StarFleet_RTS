@@ -17,19 +17,22 @@ public class EnemyAI : MonoBehaviour
     void FixedUpdate()
     {
         if (gameObject.transform.Find("Radar").GetComponent<Senscor>().Radarimage.Count >= 1)
-        {  
+        {
             Target = gameObject.transform.Find("Radar").GetComponent<Senscor>().Radarimage[0];
             distance = Vector2.Distance(transform.position, Target.position);
-            Vector2 DIR = Target.position - transform.position;
-            if (distance < FireRange && distance > FireRange - 2)
+            if (distance >= FireRange)
             {
-                DIR = transform.position;
+                transform.position = Vector2.MoveTowards(this.transform.position, Target.position, speed * Time.deltaTime);
             }
-            if (distance < FireRange - 2)
+            else if (distance >= FireRange - 2)
             {
-                DIR = -DIR;
+                transform.position = transform.position;
             }
-            transform.position = Vector2.MoveTowards(this.transform.position, DIR, speed * Time.deltaTime);
+            else
+            {
+                transform.Translate((transform.position - Target.position) *Time.deltaTime);
+            }
+            
         }
 
     }

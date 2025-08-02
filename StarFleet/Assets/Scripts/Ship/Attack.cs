@@ -61,7 +61,7 @@ public class Attack : MonoBehaviour
             {
                 attacking.GetComponent<ShipBase>().HP -= damage;
             }
-            Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
+            //Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
