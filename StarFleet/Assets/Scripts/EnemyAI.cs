@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
         {
             Target = gameObject.transform.Find("Radar").GetComponent<Senscor>().Radarimage[0];
             distance = Vector2.Distance(transform.position, Target.position);
-            if (transform.GetComponent<ShipBase>().HP > transform.GetComponent<ShipBase>().MaxHealth / 2) //和目標的交互過程
+            if (transform.GetComponent<ShipBase>().HP > transform.GetComponent<ShipBase>().MaxHealth / 2 ||true) //和目標的交互過程
             {
                 if (distance >= FireRange)
                 {
@@ -37,10 +37,10 @@ public class EnemyAI : MonoBehaviour
                     transform.Translate((transform.position - Target.position) * Time.deltaTime*speed);
                 }
             }
-            else //血量過低時 逃跑
-            {
-                transform.Translate((transform.position - Target.position) * Time.deltaTime*speed*0.3f);
-            }
+            //else //血量過低時 逃跑
+            //{
+            //    transform.Translate((transform.position - Target.position) * Time.deltaTime*speed*0.2f);
+            //}
 
         }
 

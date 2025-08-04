@@ -9,12 +9,13 @@ public class Attack : MonoBehaviour
     //和Sensor.cs一樣概念，但是變成了攻擊
     //可調整變數如下:CD=冷卻時間，accurcy=準確度，damage=傷害
     public List<GameObject> Targetlist = new List<GameObject>();
-    private GameObject attacking;
+    public GameObject attacking;
     private Coroutine attackRoutine;
-    private float FireRange;
+    public float FireRange;
     private int CD;
     private float accurcy;
     private int damage;
+    public int ProjectileSpeed;
 
     //設置攻擊範圍
     void Start()
@@ -23,6 +24,7 @@ public class Attack : MonoBehaviour
         CD = transform.parent.GetComponent<ShipBase>().CD;
         accurcy = transform.parent.GetComponent<ShipBase>().accurcy;
         damage = transform.parent.GetComponent<ShipBase>().damage;
+        ProjectileSpeed = transform.parent.GetComponent<ShipBase>().ProjectileSpeed;
     }
 
     void Update()
@@ -61,6 +63,7 @@ public class Attack : MonoBehaviour
             {
                 attacking.GetComponent<ShipBase>().HP -= damage;
             }
+            Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity,transform); //生成子彈
             Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
