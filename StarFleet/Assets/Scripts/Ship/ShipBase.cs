@@ -3,17 +3,18 @@ using UnityEngine;
 public class ShipBase : MonoBehaviour
 {
     public float FireRange;
+    public float RadarSize;
     public int CD;
     public float accurcy;
-    public float damage;
+    public int damage;
     public float speed;
-    public float RadarSize;
-    public float HP;
+    public int HP;
     public bool isEnemy;
     public int Shiptype;
+    public int MaxHealth;
     void Start()
     {
-        
+        MaxHealth = HP;
     }
     void FixedUpdate()
     {

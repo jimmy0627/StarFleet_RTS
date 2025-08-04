@@ -14,7 +14,7 @@ public class Attack : MonoBehaviour
     private float FireRange;
     private int CD;
     private float accurcy;
-    private float damage;
+    private int damage;
 
     //設置攻擊範圍
     void Start()
@@ -61,7 +61,7 @@ public class Attack : MonoBehaviour
             {
                 attacking.GetComponent<ShipBase>().HP -= damage;
             }
-            //Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
+            Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
