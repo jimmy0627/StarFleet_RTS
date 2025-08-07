@@ -5,6 +5,7 @@ public class ShipBase : MonoBehaviour
     public GameObject Bullet;
     public float FireRange;
     public float RadarSize;
+    public float FarRadarSize;
     public int CD;
     public float accurcy;
     public int damage;
@@ -17,6 +18,15 @@ public class ShipBase : MonoBehaviour
     void Start()
     {
         MaxHealth = HP;
+        if (isEnemy)
+        {
+            SpriteRenderer srr =  GetComponent<SpriteRenderer>();
+            if (srr != null)
+            {
+                Color c = srr.color;
+                srr.color = new Color(c.r, c.g, c.b, 0f); // 半透明
+            }
+        }
     }
     void FixedUpdate()
     {
