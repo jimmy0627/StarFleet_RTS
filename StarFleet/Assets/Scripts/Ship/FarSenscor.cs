@@ -58,5 +58,10 @@ public class FarSenscor : MonoBehaviour
         {
             FarRadarimage.Remove(collision.transform);
         }
+        SpriteRenderer sr = collision.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);//不透明
+        }
     }
 }
