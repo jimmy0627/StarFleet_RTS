@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2943723864182956213}
   - component: {fileID: 6729025197673912639}
   - component: {fileID: 2469772324903845271}
+  - component: {fileID: -7759727457187132647}
   m_Layer: 0
   m_Name: Enemy ship
   m_TagString: Enemy
@@ -116,6 +117,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   speed: 1
   distance: 0
+  agent: {fileID: -7759727457187132647}
 --- !u!114 &2469772324903845271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,16 +130,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b76c81f95a57e4fbb13b37c1ae06d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
   FireRange: 5
   RadarSize: 10
   CD: 1
   accurcy: 100
   damage: 0
   speed: 2
+  ProjectileSpeed: 0
   HP: 10
   isEnemy: 1
   Shiptype: 1
   MaxHealth: 0
+--- !u!195 &-7759727457187132647
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575729658352201960}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7729796090755068731
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targetlist: []
+  attacking: {fileID: 0}
+  FireRange: 0
+  ProjectileSpeed: 0
 --- !u!1 &8714338121452360391
 GameObject:
   m_ObjectHideFlags: 0
