@@ -58,12 +58,12 @@ public class Attack : MonoBehaviour
     {
         while (attacking != null)
         {
+            Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);
             if (aim <= accurcy)
             {
                 attacking.GetComponent<ShipBase>().HP -= damage;
             }
-            Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity,transform); //生成子彈
             Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
             attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
