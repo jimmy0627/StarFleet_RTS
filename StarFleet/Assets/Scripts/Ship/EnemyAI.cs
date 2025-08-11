@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor.Profiling;
 using UnityEngine;
@@ -25,8 +26,19 @@ public class EnemyAI : MonoBehaviour
         if (gameObject.transform.Find("Radar").GetComponent<Senscor>().Radarimage.Count >= 1) //若雷達範圍內存在目標
         {
             Target = gameObject.transform.Find("Radar").GetComponent<Senscor>().Radarimage[0];
-            distance = Vector2.Distance(transform.position, Target.position);
             agent.SetDestination(Target.transform.position); //朝目標移動
         }
+        RotateFaceMoveDIR();
     }
+    private void RotateFaceMoveDIR()
+    {
+        Vector2 MoveDIR = GetComponent<Rigidbody2D>().linearVelocity;
+        if (MoveDIR != Vector2.zero)
+        {
+            float angel = (float)(Math.Atan2(MoveDIR.x, MoveDIR.y) * Mathf.Rad2Deg);
+            Quaternion targetRotation = Quaternion.AngleAxis(angel, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 80 * Time.deltaTime);
+        }
+       
+    } 
 }

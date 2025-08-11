@@ -82,6 +82,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Targetlist: []
+  attacking: {fileID: 0}
+  FireRange: 0
+  ProjectileSpeed: 0
 --- !u!1 &3073972671640968625
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,8 +114,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4909667575375087433}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -160,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -825923489381854314, guid: 4f503b5b7dedc2c48ad2cc6444750f1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -413,7 +416,6 @@ GameObject:
   - component: {fileID: 4909667575375087433}
   - component: {fileID: 7436769732094435129}
   - component: {fileID: 5289791609394807667}
-  - component: {fileID: 4362608888107521916}
   - component: {fileID: 2873749574401740416}
   m_Layer: 0
   m_Name: Playership
@@ -504,22 +506,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &4362608888107521916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7946403038104798754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cde4631ae571b9e4cb2fec5183812c1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  minSize: 1
-  maxSize: 10
-  scrollspeed: 0
 --- !u!114 &2873749574401740416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,12 +518,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b76c81f95a57e4fbb13b37c1ae06d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bullet: {fileID: 0}
   FireRange: 3
+  RadarSize: 5
   CD: 1
   accurcy: 100
   damage: 1
   speed: 1
-  RadarSize: 5
+  ProjectileSpeed: 0
   HP: 10
   isEnemy: 0
   Shiptype: 0
+  MaxHealth: 0

@@ -29,7 +29,6 @@ public class Shipyard : MonoBehaviour
     }
     Vector3 Spawnspread()//隨機加上一個位移 避免生出來的船撞在一起
     {
-        
         delta = Quaternion.AngleAxis(counts, Vector3.forward)*Vector3.up*dis;
         counts += 60;
         if (counts >= 360)
@@ -45,7 +44,7 @@ public class Shipyard : MonoBehaviour
         {
             if (Battleship!=null)
             {
-                Instantiate(Battleship, Spawnspread(), Quaternion.identity);
+                Instantiate(Battleship, Spawnspread()+transform.position, Quaternion.identity);
             }
             
         }
@@ -53,14 +52,14 @@ public class Shipyard : MonoBehaviour
         {
             if (Crusier!=null)
             {
-                Instantiate(Crusier, Spawnspread(), Quaternion.identity);
+                Instantiate(Crusier, Spawnspread()+transform.position, Quaternion.identity);
             }
         }
         for (int i = 0; i < numberD; i++)
         {
             if (Destroier != null)
             {
-                Instantiate(Destroier, Spawnspread(), Quaternion.identity);
+                Instantiate(Destroier, Spawnspread()+transform.position, Quaternion.identity);
             }
         }
 
