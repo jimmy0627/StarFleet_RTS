@@ -21,10 +21,10 @@ public class SelectionBox : MonoBehaviour
     [SerializeField]
     Camera mainCamera;
     [SerializeField]
-    GameObject singleUnitUI;
-    [SerializeField]
-    GameObject multiplyUnitUI;
-    [SerializeField]
+////    GameObject singleUnitUI;
+////    [SerializeField]
+////    GameObject multiplyUnitUI;
+////    [SerializeField]
     GameObject UnitActionUI;
 
     private bool isSelecting = false;
@@ -51,7 +51,7 @@ public class SelectionBox : MonoBehaviour
         }
 
 
-        moveDirection = Vector2.zero;
+/*        moveDirection = Vector2.zero;
         // 檢測鼠標是否在螢幕邊緣
         if (Input.mousePosition.x <= 10f)
         {
@@ -79,7 +79,7 @@ public class SelectionBox : MonoBehaviour
             moveDirection.y = 1;
         }
 
-/*        // 移動攝影機
+        // 移動攝影機
         mainCamera.transform.position += moveDirection * cameraMoveSpeed * Time.deltaTime;
 
 
@@ -154,13 +154,13 @@ public class SelectionBox : MonoBehaviour
             }
             else if (selectedUnits.Count() > 1)
             {
-                singleUnitUI.SetActive(false);
-                multiplyUnitUI.SetActive(true);
+                //singleUnitUI.SetActive(false);
+                //multiplyUnitUI.SetActive(true);
             }
             else
             {
-                singleUnitUI.SetActive(false);
-                multiplyUnitUI.SetActive(false);
+                //singleUnitUI.SetActive(false);
+                //multiplyUnitUI.SetActive(false);
             }
             clickStartOnUI = false;
         }
