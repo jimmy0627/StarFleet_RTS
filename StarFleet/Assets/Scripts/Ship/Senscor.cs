@@ -10,15 +10,13 @@ public class Senscor : MonoBehaviour
     //利用CircleCollider的覆蓋範圍當作雷達範圍 在利用contacs印出範圍內的物件
     public List<Transform> Radarimage = new List<Transform>();
     private List<GameObject> objectsToControl = new List<GameObject>();//
-    public float Radarsize ;
-    public bool IFF;
+    public float Radarsize;
     private CircleCollider2D Radar;
     void Start()
     {
         Radarsize = transform.parent.GetComponent<ShipBase>().RadarSize;
         Radar = gameObject.GetComponent<CircleCollider2D>();
         Radar.radius = Radarsize; //設置雷達範圍
-        
         GameObject[] Enemy = GameObject.FindGameObjectsWithTag("Enemy");//
         objectsToControl.AddRange(Enemy);
         foreach (GameObject obj in objectsToControl)
@@ -43,17 +41,27 @@ public class Senscor : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D collision)
     {
-        SpriteRenderer sr = collision.GetComponent<SpriteRenderer>();
-        if (sr != null)
+        foreach (var i in Radarimage)
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);//不透明
+            SpriteRenderer sr = i.Find("Hull").GetComponent<SpriteRenderer>();
+
+            if (sr != null)
+            {
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);//處於雷達探測範圍，設置為不透明
+                Debug.Log(i.transform.localScale);
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+        if (Radarimage.Find(x => x = collision.transform))
         {
+            SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);//不透明
+            }
             Radarimage.Remove(collision.transform);
         }
     }

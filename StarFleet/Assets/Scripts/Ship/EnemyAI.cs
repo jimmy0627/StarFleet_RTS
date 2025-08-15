@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
         FireRange = transform.GetComponent<ShipBase>().FireRange;
         speed = transform.GetComponent<ShipBase>().speed;
         agent = GetComponent<NavMeshAgent>();
-
+        
         agent.stoppingDistance = FireRange; //設定和目標的距離保持
     }
     void FixedUpdate()

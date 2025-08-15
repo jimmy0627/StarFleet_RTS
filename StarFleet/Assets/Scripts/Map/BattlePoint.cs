@@ -1,57 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-
+using System;
 public class BattlePoint : MonoBehaviour
 {
-    public List<GameObject> InsidePoint = new List<GameObject>();
     public SpriteRenderer spriteRenderer;
-    public int Bluepoint = 0;
-    public int Redpoint = 0;
-    public int Point = 0;
-    private Coroutine Occupiedroutine;
+    public int Bluepoint = 0; //藍方船隻數量
+    public int Redpoint = 0; //紅方船隻數量
+    float colorr = 1;
+    float colorb = 1;
+    float colorg = 1;
     void Start()
     {
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        InvokeRepeating("Occupied", 0, 1);
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ShipBase>() != null)
         {
-            InsidePoint.Add(collision.gameObject);
-        }
-    }
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        foreach (var item in InsidePoint)
-        {
-            if (item.CompareTag("Self") && item!=null) Bluepoint += 1;
+            if (collision.gameObject.CompareTag("Self")) Bluepoint += 1;
             else Redpoint += 1;
-
-            if (Bluepoint > Redpoint) Point += 1;
-            else Point -= 1;
         }
-        Occupiedroutine = StartCoroutine(Occupied());
     }
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<ShipBase>() != null)
         {
-            InsidePoint.Remove(collision.gameObject);
+            if (collision.gameObject.CompareTag("Self")) Bluepoint -= 1;
+            else Redpoint -= 1;
         } 
     }
 
-    private IEnumerator Occupied()
+    void Occupied()
     {
-        if (Bluepoint > Redpoint) Point += 1;
-        else if (Bluepoint < Redpoint) Point -= 1;
-
-        if (Point > 0) spriteRenderer.color = new Color(0f, 0f, 1f, 0.5f);
-        else if (Point < 0) spriteRenderer.color = new Color(1f, 0f, 0f, 0.5f);
-        else spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
-        Redpoint = Bluepoint = Point = 0;
-        yield return new WaitForSeconds(1);
+        if (Bluepoint < Redpoint)
+        {
+            if (colorb > 0) colorb -= 0.1f;
+            if (colorr < 1) colorr += 0.1f;
+        }
+        else if (Bluepoint > Redpoint)
+        {
+            if (colorr > 0) colorr -= 0.1f;
+            if (colorb < 1) colorb += 0.1f;
+        }
+        if (Bluepoint + Redpoint > 0 && colorg>0) colorg -= 0.1f;
+        spriteRenderer.color = new Color(colorr, colorg , colorb, 0.5f);
     }
 
 }
