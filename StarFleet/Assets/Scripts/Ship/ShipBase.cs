@@ -15,6 +15,22 @@ public class ShipBase : MonoBehaviour
     public bool isEnemy;
     public int Shiptype;
     public int MaxHealth;
+    private SpriteRenderer sr;
+
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+    public void Select()
+    {
+        sr.color = Color.green; // 高亮顯示
+    }
+
+    public void Deselect()
+    {
+        sr.color = Color.white; // 恢復原狀
+    }
     void Start()
     {
         MaxHealth = HP;
