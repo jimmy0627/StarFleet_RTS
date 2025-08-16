@@ -16,6 +16,7 @@ public class Attack : MonoBehaviour
     private float accurcy;
     private int damage;
     public int ProjectileSpeed;
+    public float ECM=1; //
 
     //設置攻擊範圍
     void Start()
@@ -60,7 +61,7 @@ public class Attack : MonoBehaviour
         {
             Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);
-            if (aim <= accurcy)
+            if (aim*ECM <= accurcy)
             {
                 attacking.GetComponent<ShipBase>().HP -= damage;
             }
