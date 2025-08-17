@@ -19,7 +19,7 @@ public class ShipBase : MonoBehaviour
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = transform.Find("Hull").GetComponent<SpriteRenderer>();
     }
 
     public void Select()

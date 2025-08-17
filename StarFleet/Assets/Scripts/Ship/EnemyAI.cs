@@ -36,9 +36,8 @@ public class EnemyAI : MonoBehaviour
         if (MoveDIR != Vector2.zero)
         {
             float angel = (float)(Math.Atan2(MoveDIR.x, MoveDIR.y) * Mathf.Rad2Deg);
-            Quaternion targetRotation = Quaternion.AngleAxis(angel, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 80 * Time.deltaTime);
-        }
-       
+            Quaternion targetRotation = Quaternion.AngleAxis(angel, Vector3.back);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2 * Time.deltaTime);
+        }  
     } 
 }
