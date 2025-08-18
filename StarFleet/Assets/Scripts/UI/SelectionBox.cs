@@ -11,7 +11,7 @@ public class SelectionBox : MonoBehaviour
     private bool isSelecting = false;
     private bool clickStartOnUI = false;
     private Vector2 startPos, endPos;
-    private List<GameObject> selectedUnits = new List<GameObject>();
+    public List<GameObject> selectedUnits = new List<GameObject>();
 
     void Update()
     {

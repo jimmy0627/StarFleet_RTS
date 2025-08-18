@@ -45,6 +45,10 @@ public class BattlePoint : MonoBehaviour
             if (colorr > 0) colorr -= 0.1f;
             if (colorb < 1) colorb += 0.1f;
         }
+        else if (Bluepoint == Redpoint)
+        {
+            return;
+        }
         if (Bluepoint + Redpoint > 0 && colorg > 0) colorg -= 0.1f;
         spriteRenderer.color = new Color(colorr, colorg, colorb, 0.5f);
         

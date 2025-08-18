@@ -17,6 +17,7 @@ public class Attack : MonoBehaviour
     private int damage;
     public int ProjectileSpeed;
     public float ECM=1; //
+    public bool HoldFire=false;
 
     //設置攻擊範圍
     void Start()
@@ -46,7 +47,7 @@ public class Attack : MonoBehaviour
             }
         }
         Targetlist.RemoveAll(t => t == null);
-        if (attacking == null && attackRoutine == null)
+        if (attacking == null && attackRoutine == null && !HoldFire)
         {
             attacking = MaxByShipType(Targetlist);
             attackRoutine = StartCoroutine(AttackTarget());

@@ -18,19 +18,6 @@ public class Senscor : MonoBehaviour
         Radarsize = transform.parent.GetComponent<ShipBase>().RadarSize;
         Radar = gameObject.GetComponent<CircleCollider2D>();
         Radar.radius = Radarsize; //設置雷達範圍
-/*        
-        GameObject[] Enemy = GameObject.FindGameObjectsWithTag("Enemy");//
-        objectsToControl.AddRange(Enemy);
-        foreach (GameObject obj in objectsToControl)
-        {
-            SpriteRenderer srr = obj.GetComponent<SpriteRenderer>();
-            if (srr != null)
-            {
-                Color c = srr.color;
-                srr.color = new Color(c.r, c.g, c.b, 0f); // 半透明
-            }
-        }
-*/
     }
 
     void OnTriggerEnter2D(Collider2D collision)
