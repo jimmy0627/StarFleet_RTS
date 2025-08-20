@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ShipBase : MonoBehaviour
 {
@@ -15,7 +18,9 @@ public class ShipBase : MonoBehaviour
     public bool isEnemy;
     public int Shiptype;
     public int MaxHealth;
+    public List<Vector3> TargetDes = new List<Vector3>();
     private SpriteRenderer sr;
+    public NavMeshAgent agent;
 
     void Awake()
     {
@@ -44,8 +49,16 @@ public class ShipBase : MonoBehaviour
             }
         }
     }
-    void FixedUpdate()
+    void Update()
     {
+        if (TargetDes.Any())
+        {
+            agent.SetDestination(TargetDes[0]);
+            if (transform.position == TargetDes[0])
+            {
+                TargetDes.RemoveAt(0);
+            }
+        }
         if (HP <= 0)
         {
             Destroy(transform.gameObject);
