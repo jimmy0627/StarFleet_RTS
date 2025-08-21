@@ -24,6 +24,7 @@ public class SelectionBox : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             clickStartOnUI = EventSystem.current.IsPointerOverGameObject();
+
             if (clickStartOnUI) return;
 
             UnSelectUnits();
@@ -105,6 +106,7 @@ public class SelectionBox : MonoBehaviour
 
             // 讓 ShipBase 自己處理外觀變化（選取高亮）
             shipBase.Select();
+            obj.transform.Find("ShowRange").GetComponent<Indicator>().ShowRange(true);
         }
     }
 
@@ -117,6 +119,7 @@ public class SelectionBox : MonoBehaviour
             {
                 shipBase.Deselect();
             }
+            obj.transform.Find("ShowRange").GetComponent<Indicator>().ShowRange(false);
         }
         selectedUnits.Clear();
     }
