@@ -10,16 +10,22 @@ public class UnitOrder : MonoBehaviour
     {
         Unitinlist = transform.GetComponent<SelectionBox>().selectedUnits;
         Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Unitinlist.Any() && Input.GetMouseButtonDown(1))
+        mousepos.z = 0;
+        if (Unitinlist.Any() && Input.GetMouseButtonDown(1) && Input.GetKey(KeyCode.LeftShift))
         {
             TargetDes.Add(mousepos);
+            foreach (var item in Unitinlist)
+            {
+                item.transform.GetComponent<ShipBase>().TargetDes = TargetDes;
+            }
         }
-        foreach (var item in Unitinlist)
+        else if (Unitinlist.Any() && Input.GetMouseButtonDown(1))
         {
-            item.transform.GetComponent<ShipBase>().TargetDes = TargetDes;
-        }
-        if (!Input.GetKey(KeyCode.LeftShift))
-        {
+            TargetDes.Add(mousepos);
+            foreach (var item in Unitinlist)
+            {
+                item.transform.GetComponent<ShipBase>().TargetDes = TargetDes;
+            }
             TargetDes = new List<Vector3>();
         }
     }

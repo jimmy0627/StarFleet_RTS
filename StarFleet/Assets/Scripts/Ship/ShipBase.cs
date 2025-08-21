@@ -54,7 +54,7 @@ public class ShipBase : MonoBehaviour
         if (TargetDes.Any())
         {
             agent.SetDestination(TargetDes[0]);
-            if (transform.position == TargetDes[0])
+            if (Vector3.Distance(transform.position,TargetDes[0])<0.5)
             {
                 TargetDes.RemoveAt(0);
             }
