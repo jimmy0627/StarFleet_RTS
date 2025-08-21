@@ -3,6 +3,7 @@ using UnityEngine;
 public class ShipBase : MonoBehaviour
 {
     public GameObject Bullet;
+    public GameObject HpBar;
     public float FireRange;
     public float RadarSize;
     public float FarRadarSize;
