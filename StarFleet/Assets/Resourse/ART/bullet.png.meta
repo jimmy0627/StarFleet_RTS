@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 1192c2721eb1d0643b8246f1b86105fb
+guid: adec6934049e3da4082b5c6b891c81b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9206183531503670783
-    second: rts1_0
+      213: -2346302928887187388
+    second: bullet_0
   - first:
-      213: 6373689182784204467
-    second: rts1_1
+      213: 5379323082974078785
+    second: bullet_1
   - first:
-      213: 1027280033242285840
-    second: rts1_2
+      213: -2863499236874410579
+    second: bullet_2
+  - first:
+      213: 6740024121541949626
+    second: bullet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -57,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 45
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -132,67 +135,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: rts1_0
+      name: bullet_0
       rect:
         serializedVersion: 2
-        x: 174
-        y: 46
-        width: 682
-        height: 447
+        x: 314
+        y: 14
+        width: 439
+        height: 525
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10a2ca3cad01d3080800000000000000
-      internalID: -9206183531503670783
+      spriteID: 448783cdae1407fd0800000000000000
+      internalID: -2346302928887187388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rts1_1
+      name: bullet_1
       rect:
         serializedVersion: 2
-        x: 310
-        y: 39
-        width: 118
-        height: 148
+        x: 640
+        y: 22
+        width: 39
+        height: 149
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3be2a90ea84e37850800000000000000
-      internalID: 6373689182784204467
+      spriteID: 147aab4d7d137aa40800000000000000
+      internalID: 5379323082974078785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rts1_2
+      name: bullet_2
       rect:
         serializedVersion: 2
-        x: 603
-        y: 39
-        width: 118
-        height: 148
+        x: 383
+        y: 24
+        width: 46
+        height: 113
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 017024a5fb1a14e00800000000000000
-      internalID: 1027280033242285840
+      spriteID: da5af739d9ec248d0800000000000000
+      internalID: -2863499236874410579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet_3
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 20
+        width: 42
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab872167a30698d50800000000000000
+      internalID: 6740024121541949626
       vertices: []
       indices: 
       edges: []
@@ -201,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: fa48e7d94fcf43e4b8b1e7707438b9d5
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      rts1_0: -9206183531503670783
-      rts1_1: 6373689182784204467
-      rts1_2: 1027280033242285840
+      bullet_0: -2346302928887187388
+      bullet_1: 5379323082974078785
+      bullet_2: -2863499236874410579
+      bullet_3: 6740024121541949626
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

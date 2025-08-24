@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6729025197673912639}
   - component: {fileID: 2469772324903845271}
   - component: {fileID: -9004538434741632197}
+  - component: {fileID: 3493294759259033502}
+  - component: {fileID: 3251281038165270284}
   m_Layer: 0
   m_Name: Enemy ship
   m_TagString: Enemy
@@ -32,7 +34,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.89, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4639366789023287890}
   - {fileID: 6702095347800475653}
@@ -130,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b76c81f95a57e4fbb13b37c1ae06d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 0}
+  Bullet: {fileID: 8779000624144359343, guid: e40d6b6471c710f4d8dd1cc047cd805b, type: 3}
   FireRange: 5
   RadarSize: 10
   FarRadarSize: 0
@@ -138,11 +140,13 @@ MonoBehaviour:
   accurcy: 100
   damage: 0
   speed: 2
-  ProjectileSpeed: 0
+  ProjectileSpeed: 10
   HP: 10
   isEnemy: 1
   Shiptype: 1
   MaxHealth: 0
+  TargetDes: []
+  agent: {fileID: 0}
 --- !u!195 &-9004538434741632197
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -165,6 +169,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3493294759259033502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575729658352201960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8550f034611a06e4f88fc261204d8a7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3251281038165270284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575729658352201960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7729796090755068731
 GameObject:
   m_ObjectHideFlags: 0

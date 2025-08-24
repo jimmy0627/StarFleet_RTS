@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 public class BattlePoint : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
@@ -14,6 +15,13 @@ public class BattlePoint : MonoBehaviour
     {
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         InvokeRepeating("Occupied", 0, 1);
+    }
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+        
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,7 +41,7 @@ public class BattlePoint : MonoBehaviour
         } 
     }
 
-    void Occupied()
+    int Occupied()
     {
         if (Bluepoint < Redpoint)
         {
@@ -47,11 +55,13 @@ public class BattlePoint : MonoBehaviour
         }
         else if (Bluepoint == Redpoint)
         {
-            return;
+            return 0;
         }
         if (Bluepoint + Redpoint > 0 && colorg > 0) colorg -= 0.1f;
         spriteRenderer.color = new Color(colorr, colorg, colorb, 0.5f);
-        
+        if (colorr == 1) return 1;
+        else if (colorb == 1) return -1;
+        return 0;
     }
 
 }

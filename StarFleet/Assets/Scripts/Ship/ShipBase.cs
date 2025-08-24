@@ -29,7 +29,7 @@ public class ShipBase : MonoBehaviour
 
     public void Select()
     {
-        sr.color = Color.green; // 高亮顯示
+        sr.color = new Color(0.3323692f,0.7264151f,0.7151858f); // 高亮顯示
     }
 
     public void Deselect()
