@@ -52,7 +52,6 @@ public class Attack : MonoBehaviour
             attacking = MaxByShipType(Targetlist);
             attackRoutine = StartCoroutine(AttackTarget());
         }
-
     }
 
     //攻擊循環，判斷是否命中後扣血，並在每次攻擊循環中重新尋找優先級最高的目標
@@ -64,7 +63,7 @@ public class Attack : MonoBehaviour
             var aim = Random.Range(0, 100);
             if (aim*ECM <= accurcy)
             {
-                attacking.GetComponent<ShipBase>().HP -= damage;
+                attacking.GetComponent<ShipBase>().TakeDamage(damage);
             }
             Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
             attacking = MaxByShipType(Targetlist);
@@ -106,4 +105,5 @@ public class Attack : MonoBehaviour
         return HVT;
     }
 }
+
 

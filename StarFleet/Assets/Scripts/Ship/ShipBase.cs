@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipBase : MonoBehaviour
 {
     public GameObject Bullet;
-    public GameObject HpBar;
+    [SerializeField] private UnitHpBar HpBar;
     public float FireRange;
     public float RadarSize;
     public float FarRadarSize;
@@ -35,9 +36,10 @@ public class ShipBase : MonoBehaviour
     void Start()
     {
         MaxHealth = HP;
+        HpBar.GetComponent<UnitHpBar>().SetHPBar(HP, MaxHealth);
         if (isEnemy)
         {
-            SpriteRenderer srr =  GetComponent<SpriteRenderer>();
+            SpriteRenderer srr = GetComponent<SpriteRenderer>();
             if (srr != null)
             {
                 Color c = srr.color;
@@ -45,11 +47,17 @@ public class ShipBase : MonoBehaviour
             }
         }
     }
-    void FixedUpdate()
+    public void TakeDamage(int damage)
     {
+        HP -= damage;
+        HP = Mathf.Clamp(HP, 0, MaxHealth);
+
+        if (HpBar != null)
+            HpBar.SetHPBar(HP, MaxHealth);
         if (HP <= 0)
         {
-            Destroy(transform.gameObject);
+            Debug.Log(name + " Destroyed!");
+            Destroy(gameObject);
         }
     }
 }
