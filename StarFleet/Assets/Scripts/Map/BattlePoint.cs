@@ -11,17 +11,11 @@ public class BattlePoint : MonoBehaviour
     float colorr = 1;
     float colorb = 1;
     float colorg = 1;
+    public int status=0;
     void Start()
     {
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         InvokeRepeating("Occupied", 0, 1);
-    }
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -41,7 +35,7 @@ public class BattlePoint : MonoBehaviour
         } 
     }
 
-    int Occupied()
+    void Occupied()
     {
         if (Bluepoint < Redpoint)
         {
@@ -55,13 +49,13 @@ public class BattlePoint : MonoBehaviour
         }
         else if (Bluepoint == Redpoint)
         {
-            return 0;
+            return;
         }
         if (Bluepoint + Redpoint > 0 && colorg > 0) colorg -= 0.1f;
         spriteRenderer.color = new Color(colorr, colorg, colorb, 0.5f);
-        if (colorr == 1) return 1;
-        else if (colorb == 1) return -1;
-        return 0;
+        if (colorr == 1) status = -1;
+        else if (colorb == 1) status = 1;
+        else status = 0;
     }
 
 }

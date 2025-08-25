@@ -4,9 +4,9 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Attack : MonoBehaviour
+public class EnemyAttack:MonoBehaviour
 {
-    //和Sensor.cs一樣概念，但是變成了攻擊
+        //和Sensor.cs一樣概念，但是變成了攻擊
     //可調整變數如下:CD=冷卻時間，accurcy=準確度，damage=傷害
     public List<GameObject> Targetlist = new List<GameObject>();
     public GameObject attacking;
@@ -31,7 +31,7 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        foreach (var target in transform.parent.Find("Radar").GetComponent<Senscor>().Radarimage)
+        foreach (var target in transform.parent.Find("Radar").GetComponent<EnemySenscor>().Radarimage)
         {
             if (target == null) continue;
 
@@ -106,4 +106,3 @@ public class Attack : MonoBehaviour
         return HVT;
     }
 }
-

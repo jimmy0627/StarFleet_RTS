@@ -1,20 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using NUnit.Framework.Constraints;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Senscor : MonoBehaviour
+public class EnemySenscor : MonoBehaviour
 {
     //利用CircleCollider的覆蓋範圍當作雷達範圍 在利用contacs印出範圍內的物件
     public List<Transform> Radarimage = new List<Transform>();
     public float Radarsize;
-    public bool IFF;
     private CircleCollider2D Radar;
-    private Color set;
     void Start()
     {
         Radarsize = transform.parent.GetComponent<ShipBase>().RadarSize;
@@ -27,10 +20,9 @@ public class Senscor : MonoBehaviour
         {
             foreach (var item in Radarimage)
             {
-                if (item.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+                if (item.gameObject.GetComponent<ShipBase>().HP==0)
                 {
-                    SpriteRenderer sr = item.transform.Find("Hull").GetComponent<SpriteRenderer>();
-                    sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+                    Radarimage.Remove(item);
                 }
             }
         }
@@ -43,7 +35,6 @@ public class Senscor : MonoBehaviour
             {
                 SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
                 Radarimage.Add(collision.transform);  //進入碰撞圈，加入雷達範圍
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);//不透明
             }
         }
     }
@@ -54,7 +45,6 @@ public class Senscor : MonoBehaviour
             if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
             {
                 SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);//不透明
             }
         }
     }
@@ -64,10 +54,6 @@ public class Senscor : MonoBehaviour
         {
             SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
             Radarimage.Remove(collision.transform);
-            if (sr != null)
-            {
-                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);//不透明
-            }
         }
 
     }
