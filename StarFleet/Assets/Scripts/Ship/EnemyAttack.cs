@@ -58,7 +58,7 @@ public class EnemyAttack:MonoBehaviour
     //攻擊循環，判斷是否命中後扣血，並在每次攻擊循環中重新尋找優先級最高的目標
     private IEnumerator AttackTarget()
     {
-        while (attacking != null && !HoldFire)
+        while (attacking != null)
         {
             Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);

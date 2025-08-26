@@ -8,7 +8,6 @@ public class ShipBase : MonoBehaviour
     public GameObject Bullet;
     public float FireRange;
     public float RadarSize;
-    public float FarRadarSize;
     public int CD;
     public float accurcy;
     public int damage;
@@ -19,6 +18,7 @@ public class ShipBase : MonoBehaviour
     public int Shiptype;
     public int MaxHealth;
     public List<Vector3> TargetDes = new List<Vector3>();
+    [SerializeField] private UnitHpBar HpBar;
     private SpriteRenderer sr;
     public NavMeshAgent agent;
 
@@ -29,7 +29,7 @@ public class ShipBase : MonoBehaviour
 
     public void Select()
     {
-        sr.color = new Color(0.3323692f,0.7264151f,0.7151858f); // 高亮顯示
+        sr.color = new Color(0.3323692f, 0.7264151f, 0.7151858f); // 高亮顯示
     }
 
     public void Deselect()
@@ -38,10 +38,11 @@ public class ShipBase : MonoBehaviour
     }
     void Start()
     {
+        HpBar.GetComponent<UnitHpBar>().SetHPBar(HP, MaxHealth);
         MaxHealth = HP;
         if (isEnemy)
         {
-            SpriteRenderer srr =  GetComponent<SpriteRenderer>();
+            SpriteRenderer srr = GetComponent<SpriteRenderer>();
             if (srr != null)
             {
                 Color c = srr.color;
@@ -54,7 +55,7 @@ public class ShipBase : MonoBehaviour
         if (TargetDes.Any())
         {
             agent.SetDestination(TargetDes[0]);
-            if (Vector3.Distance(transform.position,TargetDes[0])<0.5)
+            if (Vector3.Distance(transform.position, TargetDes[0]) < 0.5)
             {
                 TargetDes.RemoveAt(0);
             }
@@ -62,6 +63,20 @@ public class ShipBase : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(transform.gameObject);
+        }
+    }
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+        HP = Mathf.Clamp(HP, 0, MaxHealth);
+
+        if (HpBar != null)
+            HpBar.SetHPBar(HP, MaxHealth);
+        if (HP <= 0)
+        {
+            Destroy(transform.gameObject);
+            Debug.Log(name + " Destroyed!");
+            Destroy(gameObject);
         }
     }
 }

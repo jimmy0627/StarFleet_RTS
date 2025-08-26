@@ -146,6 +146,7 @@ MonoBehaviour:
   Shiptype: 1
   MaxHealth: 0
   TargetDes: []
+  HpBar: {fileID: 0}
   agent: {fileID: 0}
 --- !u!195 &-9004538434741632197
 NavMeshAgent:
