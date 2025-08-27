@@ -1,27 +1,31 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class ShipBase : MonoBehaviour
 {
-    public GameObject Bullet;
-    public float FireRange;
-    public float RadarSize;
-    public int CD;
-    public float accurcy;
-    public int damage;
-    public float speed;
-    public int ProjectileSpeed;
-    public int HP;
-    public bool isEnemy;
-    public int Shiptype;
-    public int MaxHealth;
     public List<Vector3> TargetDes = new List<Vector3>();
     [SerializeField] private UnitHpBar HpBar;
     private SpriteRenderer sr;
     public NavMeshAgent agent;
-
+    public LineRenderer lr;
+    public GameObject Bullet;
+    public float FireRange;
+    public int damage;
+    public float accurcy;
+    public int CD;
+    public int ProjectileSpeed;
+    public float RadarSize;
+    public int HP;
+    public int MaxHealth;
+    public int ECM;
+    public float speed;
+    public float Rotaespeed;
+    public int Shiptype;
+    public bool isEnemy;
     void Awake()
     {
         sr = transform.Find("Hull").GetComponent<SpriteRenderer>();
@@ -30,6 +34,7 @@ public class ShipBase : MonoBehaviour
     public void Select()
     {
         sr.color = new Color(0.3323692f, 0.7264151f, 0.7151858f); // 高亮顯示
+        agent.speed = speed;
     }
 
     public void Deselect()
@@ -38,7 +43,6 @@ public class ShipBase : MonoBehaviour
     }
     void Start()
     {
-        HpBar.GetComponent<UnitHpBar>().SetHPBar(HP, MaxHealth);
         MaxHealth = HP;
         if (isEnemy)
         {
@@ -49,22 +53,44 @@ public class ShipBase : MonoBehaviour
                 srr.color = new Color(c.r, c.g, c.b, 0f); // 半透明
             }
         }
+        agent.updateRotation = false; // 禁用 NavMeshAgent 自動旋轉
+        agent.angularSpeed = 0f;      // 確保不會干擾手動旋轉
     }
     void Update()
     {
-        if (TargetDes.Any())
-        {
-            agent.SetDestination(TargetDes[0]);
-            if (Vector3.Distance(transform.position, TargetDes[0]) < 0.5)
-            {
-                TargetDes.RemoveAt(0);
-            }
-        }
+        //判定何時被擊毀
         if (HP <= 0)
         {
-            Destroy(transform.gameObject);
+            Destroy(gameObject);
+            return;
+        }
+
+        if (TargetDes.Any())
+        {
+            //設置路徑線路顯示
+            Vector3 target = TargetDes[0];
+            int count = TargetDes.Count()+1;
+            float distance = Vector3.Distance(transform.position, target);
+            lr.positionCount = count;
+            lr.SetPosition(0, transform.position);
+            for(int i=1;i<count;i++)
+            {
+                lr.SetPosition(i, TargetDes[i - 1]);
+            }
+            //設置轉向下一個路徑點
+            bool isFacingTarget = RotateToward(target);
+            if (isFacingTarget && distance > 1f)
+            {
+                agent.SetDestination(target); // 只有轉向完成才移動
+            }
+            else if (distance <= 1f)
+            {
+                TargetDes.RemoveAt(0); // 到達目標點
+            }
         }
     }
+
+
     public void TakeDamage(int damage)
     {
         HP -= damage;
@@ -78,5 +104,17 @@ public class ShipBase : MonoBehaviour
             Debug.Log(name + " Destroyed!");
             Destroy(gameObject);
         }
+    }
+    //連續旋轉
+    private bool RotateToward(Vector3 target)
+    {
+        Vector3 direction = (target - transform.position).normalized;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+
+        Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Rotaespeed * Time.deltaTime);
+
+        // 判斷是否已接近目標角度（小於 1 度視為完成轉向）
+        return Quaternion.Angle(transform.rotation, targetRotation) < 1f;
     }
 }

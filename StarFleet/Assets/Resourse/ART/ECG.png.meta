@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: bccaae2a5988fa849a7ffb5a9e8c71f4
+guid: af52b8c957b5b4e42802a90912a526c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1861295693703529154
-    second: StartMenu_0
+      213: -2619761564575750044
+    second: ECG_0
+  - first:
+      213: 2359121887864519399
+    second: ECG_1
+  - first:
+      213: -499445689331869036
+    second: ECG_2
+  - first:
+      213: 3990562546165535936
+    second: ECG_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +135,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StartMenu_0
+      name: ECG_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2420
-        height: 1668
+        x: 166
+        y: 272
+        width: 55
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e3d36da9d695b26e0800000000000000
-      internalID: -1861295693703529154
+      spriteID: 468ad33bcbcb4abd0800000000000000
+      internalID: -2619761564575750044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ECG_1
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 229
+        width: 65
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea730c9bd84db020800000000000000
+      internalID: 2359121887864519399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ECG_2
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 200
+        width: 94
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49a16ceaacc9119f0800000000000000
+      internalID: -499445689331869036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ECG_3
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 138
+        width: 441
+        height: 313
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4dc2a2e73516730800000000000000
+      internalID: 3990562546165535936
       vertices: []
       indices: 
       edges: []

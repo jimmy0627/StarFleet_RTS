@@ -10,23 +10,25 @@ public class Attack : MonoBehaviour
     //可調整變數如下:CD=冷卻時間，accurcy=準確度，damage=傷害
     public List<GameObject> Targetlist = new List<GameObject>();
     public GameObject attacking;
+    private ShipBase Base;
     private Coroutine attackRoutine;
     public float FireRange;
     private int CD;
     private float accurcy;
     private int damage;
     public int ProjectileSpeed;
-    public float ECM=1; //
+    private int ECM;
     public bool HoldFire=false;
 
     //設置攻擊範圍
     void Start()
     {
-        FireRange = transform.parent.GetComponent<ShipBase>().FireRange;
-        CD = transform.parent.GetComponent<ShipBase>().CD;
-        accurcy = transform.parent.GetComponent<ShipBase>().accurcy;
-        damage = transform.parent.GetComponent<ShipBase>().damage;
-        ProjectileSpeed = transform.parent.GetComponent<ShipBase>().ProjectileSpeed;
+        Base = transform.parent.GetComponent<ShipBase>();
+        FireRange = Base.FireRange;
+        CD = Base.CD;
+        accurcy = Base.accurcy;
+        damage = Base.damage;
+        ProjectileSpeed = Base.ProjectileSpeed;
     }
 
     void Update()
@@ -61,9 +63,11 @@ public class Attack : MonoBehaviour
     {
         while (attacking != null)
         {
-            Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity, transform); //生成子彈
+            ECM = attacking.GetComponent<ShipBase>().ECM;
+            accurcy -= ECM;
+            Instantiate(Base.Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);
-            if (aim * ECM <= accurcy)
+            if (aim <= accurcy)
             {
                 attacking.GetComponent<ShipBase>().TakeDamage(damage);
             }
