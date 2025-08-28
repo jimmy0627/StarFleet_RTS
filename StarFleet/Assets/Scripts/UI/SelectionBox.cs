@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class SelectionBox : MonoBehaviour
 {
@@ -12,10 +13,22 @@ public class SelectionBox : MonoBehaviour
     private bool clickStartOnUI = false;
     private Vector2 startPos, endPos;
     public List<GameObject> selectedUnits = new List<GameObject>();
+    private SingleShipInfo info ;
 
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        info = transform.GetComponent<SingleShipInfo>();
+    }
     void Update()
     {
         HandleUnitSelection();
+        if (selectedUnits.Count() == 1)
+        {
+            info.Showinfo(selectedUnits[0]);
+        }
     }
 
     void HandleUnitSelection()

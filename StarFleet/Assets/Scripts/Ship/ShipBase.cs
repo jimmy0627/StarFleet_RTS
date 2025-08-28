@@ -67,17 +67,17 @@ public class ShipBase : MonoBehaviour
 
         if (TargetDes.Any())
         {
-            //設置路徑線路顯示
+            int count = TargetDes.Count() + 1;
             Vector3 target = TargetDes[0];
-            int count = TargetDes.Count()+1;
             float distance = Vector3.Distance(transform.position, target);
             lr.positionCount = count;
             lr.SetPosition(0, transform.position);
-            for(int i=1;i<count;i++)
+            for (int i = 1; i < count; i++)
             {
                 lr.SetPosition(i, TargetDes[i - 1]);
             }
-            //設置轉向下一個路徑點
+            
+            //設置轉向下一個路徑點  
             bool isFacingTarget = RotateToward(target);
             if (isFacingTarget && distance > 1f)
             {
@@ -85,9 +85,11 @@ public class ShipBase : MonoBehaviour
             }
             else if (distance <= 1f)
             {
-                TargetDes.RemoveAt(0); // 到達目標點
+                TargetDes.RemoveAt(0);
+                lr.positionCount = 0;
             }
         }
+        
     }
 
 
