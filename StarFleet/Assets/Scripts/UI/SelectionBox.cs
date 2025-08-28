@@ -13,22 +13,13 @@ public class SelectionBox : MonoBehaviour
     private bool clickStartOnUI = false;
     private Vector2 startPos, endPos;
     public List<GameObject> selectedUnits = new List<GameObject>();
-    private SingleShipInfo info ;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
-    void Awake()
-    {
-        info = transform.GetComponent<SingleShipInfo>();
-    }
     void Update()
     {
         HandleUnitSelection();
-        if (selectedUnits.Count() == 1)
-        {
-            info.Showinfo(selectedUnits[0]);
-        }
     }
 
     void HandleUnitSelection()
@@ -66,6 +57,10 @@ public class SelectionBox : MonoBehaviour
             selectionBoxUI.gameObject.SetActive(false);
             SelectUnits();
             clickStartOnUI = false;
+            if (selectedUnits.Count() == 1)
+            {
+            selectedUnits[0].GetComponent<ShipBase>().Showinfo = true;
+            }
         }
     }
 
@@ -94,7 +89,6 @@ public class SelectionBox : MonoBehaviour
 
         // 找到選取框內的所有物件
         Collider2D[] selectedObjects = Physics2D.OverlapAreaAll(worldStart, worldEnd);
-
         foreach (var obj in selectedObjects)
         {
             // 只選取標記為 "FriendlyUnit" 的物件
@@ -120,7 +114,9 @@ public class SelectionBox : MonoBehaviour
             // 讓 ShipBase 自己處理外觀變化（選取高亮）
             shipBase.Select();
             obj.transform.Find("ShowRange").GetComponent<Indicator>().ShowRange(true);
+
         }
+        
     }
 
     // 取消選取
@@ -131,6 +127,7 @@ public class SelectionBox : MonoBehaviour
             if (obj && obj.TryGetComponent(out ShipBase shipBase))
             {
                 shipBase.Deselect();
+                shipBase.Showinfo = false;
             }
             obj.transform.Find("ShowRange").GetComponent<Indicator>().ShowRange(false);
         }

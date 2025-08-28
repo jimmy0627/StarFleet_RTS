@@ -8,6 +8,7 @@ using UnityEngine.AI;
 public class ShipBase : MonoBehaviour
 {
     public List<Vector3> TargetDes = new List<Vector3>();
+    public GameObject InfoPanle;
     [SerializeField] private UnitHpBar HpBar;
     private SpriteRenderer sr;
     public NavMeshAgent agent;
@@ -26,9 +27,11 @@ public class ShipBase : MonoBehaviour
     public float Rotaespeed;
     public int Shiptype;
     public bool isEnemy;
+    public bool Showinfo=false;
     void Awake()
     {
         sr = transform.Find("Hull").GetComponent<SpriteRenderer>();
+        InfoPanle.SetActive(false);
     }
 
     public void Select()
@@ -39,6 +42,11 @@ public class ShipBase : MonoBehaviour
 
     public void Deselect()
     {
+        if (Showinfo)
+        {
+            InfoPanle.SetActive(false);
+            Showinfo = false;
+        }
         sr.color = Color.white; // 恢復原狀
     }
     void Start()
@@ -64,7 +72,11 @@ public class ShipBase : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        if (Showinfo)
+        {
+            InfoPanle.gameObject.GetComponent<SingleShipInfo>().singleinfo(gameObject);
+            InfoPanle.gameObject.SetActive(true);
+        }
         if (TargetDes.Any())
         {
             int count = TargetDes.Count() + 1;
@@ -91,8 +103,6 @@ public class ShipBase : MonoBehaviour
         }
         
     }
-
-
     public void TakeDamage(int damage)
     {
         HP -= damage;
