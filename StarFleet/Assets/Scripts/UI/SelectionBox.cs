@@ -113,7 +113,7 @@ public class SelectionBox : MonoBehaviour
 
             // 讓 ShipBase 自己處理外觀變化（選取高亮）
             shipBase.Select();
-            obj.transform.Find("ShowRange").GetComponent<Indicator>().ShowRange(true);
+            obj.transform.Find("ShowRange").GetComponent<Indicator>().show=true;
 
         }
         
@@ -124,12 +124,15 @@ public class SelectionBox : MonoBehaviour
     {
         foreach (var obj in selectedUnits)
         {
-            if (obj && obj.TryGetComponent(out ShipBase shipBase))
+            if (obj != null)
             {
-                shipBase.Deselect();
-                shipBase.Showinfo = false;
+                if (obj && obj.TryGetComponent(out ShipBase shipBase))
+                {
+                    shipBase.Deselect();
+                    shipBase.Showinfo = false;
+                }
+                obj.transform.Find("ShowRange").GetComponent<Indicator>().show=false;
             }
-            obj.transform.Find("ShowRange").GetComponent<Indicator>().ShowRange(false);
         }
         selectedUnits.Clear();
     }

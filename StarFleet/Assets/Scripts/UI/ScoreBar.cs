@@ -20,7 +20,6 @@ public class ScoreBar : MonoBehaviour
         foreach (var item in ControPointlist)
         {
             TotalScore += item.GetComponent<BattlePoint>().status;
-            Debug.Log(item.GetComponent<BattlePoint>().status);
         }
         if (TotalScore < 0) BlueSideBar.GetComponent<Image>().fillAmount -= 0.1f*Time.deltaTime;
         else if (TotalScore > 0) RedSideBar.GetComponent<Image>().fillAmount -= 0.1f*Time.deltaTime;

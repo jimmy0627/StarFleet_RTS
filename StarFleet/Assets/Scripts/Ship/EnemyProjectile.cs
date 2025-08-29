@@ -16,18 +16,20 @@ public class EnemyProjectile : MonoBehaviour
         ProjectileSpeed = transform.parent.GetComponent<EnemyAttack>().ProjectileSpeed;
         FireRange = transform.parent.GetComponent<EnemyAttack>().FireRange;
         maxtime = FireRange / ProjectileSpeed;
+        transform.parent = null;
 
-        Vector3 TargetDIR = Target.position - transform.position;
-        DIR = Vector3.RotateTowards(transform.up, TargetDIR, 2, 0.0f).normalized;
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, DIR);
+        Vector3 TargetDIR = (Target.position - transform.position).normalized;
+        float angle = Mathf.Atan2(TargetDIR.y, TargetDIR.x) * Mathf.Rad2Deg - 90f;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
     }
     void FixedUpdate()
     {
         //子彈朝目標飛行
         if (Target != null)
         {
-            transform.Translate(Vector3.up * Time.deltaTime * ProjectileSpeed);
-            if (Vector3.Distance(transform.position, Target.transform.position) <= 0.5f)  //近炸引信
+            transform.position += transform.up * Time.deltaTime * ProjectileSpeed;
+            if (Vector3.Distance(transform.position, Target.transform.position) <= 1f)  //靠近目標後自動刪除
             {
                 Destroy(gameObject);
             }

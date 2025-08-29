@@ -31,9 +31,8 @@ public class EnemySenscor : MonoBehaviour
     {
         if (collision.transform.GetComponent<ShipBase>() != null)
         {
-            if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+            if (collision.gameObject.CompareTag("Self"))
             {
-                SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
                 Radarimage.Add(collision.transform);  //進入碰撞圈，加入雷達範圍
             }
         }
@@ -42,18 +41,17 @@ public class EnemySenscor : MonoBehaviour
     {
         if (collision.transform.GetComponent<ShipBase>() != null)
         {
-            if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+            if (collision.gameObject.CompareTag("Self"))
             {
-                SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
+        
             }
         }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+        if (collision.gameObject.CompareTag("Self"))
         {
-            SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
-            Radarimage.Remove(collision.transform);
+            Radarimage.Remove(collision.transform);  //離開碰撞圈，移除雷達範圍
         }
 
     }

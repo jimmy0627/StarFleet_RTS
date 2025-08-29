@@ -49,11 +49,23 @@ public class Attack : MonoBehaviour
             }
         }
         Targetlist.RemoveAll(t => t == null);
-        if (attacking == null && attackRoutine == null)
+        if (HoldFire)
         {
-            attacking = MaxByShipType(Targetlist);
+            if (attackRoutine != null)
+            {
+                StopCoroutine(attackRoutine);
+                attackRoutine = null;
+            }
+            attacking = null;
+            return; // 不執行攻擊邏輯
+        }
+        if (attacking == null && attackRoutine == null && Targetlist.Any())
+        {
+            // 根據 Shiptype 決定目標選擇方式
+            if (Base.Shiptype == 1) attacking = MinByShipType(Targetlist);
+            else attacking = MaxByShipType(Targetlist);
+
             attackRoutine = StartCoroutine(AttackTarget());
-            Debug.Log(HoldFire);
         }
 
     }
@@ -61,7 +73,7 @@ public class Attack : MonoBehaviour
     //攻擊循環，判斷是否命中後扣血，並在每次攻擊循環中重新尋找優先級最高的目標
     private IEnumerator AttackTarget()
     {
-        while (attacking != null)
+        while (attacking != null && !HoldFire)
         {
             ECM = attacking.GetComponent<ShipBase>().ECM;
             accurcy -= ECM;
@@ -70,8 +82,10 @@ public class Attack : MonoBehaviour
             if (aim <= accurcy)
             {
                 attacking.GetComponent<ShipBase>().TakeDamage(damage);
+                Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:" + transform.parent.name+"hit");
             }
-            attacking = MaxByShipType(Targetlist);
+            if (Base.Shiptype == 1) attacking = MinByShipType(Targetlist);
+            else attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
         attackRoutine = null;
@@ -101,7 +115,7 @@ public class Attack : MonoBehaviour
         GameObject HVT = null;
         foreach (var target in Targetlist)
         {
-            if (target.GetComponent<ShipBase>().Shiptype >= minshiptype)
+            if (target.GetComponent<ShipBase>().Shiptype <= minshiptype)
             {
                 minshiptype = target.GetComponent<ShipBase>().Shiptype;
                 HVT = target;

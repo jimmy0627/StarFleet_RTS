@@ -49,7 +49,8 @@ public class EnemyAttack:MonoBehaviour
         Targetlist.RemoveAll(t => t == null);
         if (attacking == null && attackRoutine == null)
         {
-            attacking = MaxByShipType(Targetlist);
+            if (transform.parent.GetComponent<ShipBase>().Shiptype == 1) attacking = MinByShipType(Targetlist);
+            else attacking = MaxByShipType(Targetlist);
             attackRoutine = StartCoroutine(AttackTarget());
         }
 
@@ -62,12 +63,13 @@ public class EnemyAttack:MonoBehaviour
         {
             Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);
-            if (aim*ECM <= accurcy)
+            if (aim * ECM <= accurcy)
             {
                 attacking.GetComponent<ShipBase>().HP -= damage;
+                Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name+"hit");
             }
-            Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:"+transform.parent.name);
-            attacking = MaxByShipType(Targetlist);
+            if (transform.parent.GetComponent<ShipBase>().Shiptype == 1) attacking = MinByShipType(Targetlist);
+            else attacking = MaxByShipType(Targetlist);
             yield return new WaitForSeconds(CD);
         }
         attackRoutine = null;
@@ -97,7 +99,7 @@ public class EnemyAttack:MonoBehaviour
         GameObject HVT = null;
         foreach (var target in Targetlist)
         {
-            if (target.GetComponent<ShipBase>().Shiptype >= minshiptype)
+            if (target.GetComponent<ShipBase>().Shiptype <= minshiptype)
             {
                 minshiptype = target.GetComponent<ShipBase>().Shiptype;
                 HVT = target;

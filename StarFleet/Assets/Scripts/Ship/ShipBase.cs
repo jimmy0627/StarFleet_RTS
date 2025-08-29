@@ -31,7 +31,7 @@ public class ShipBase : MonoBehaviour
     void Awake()
     {
         sr = transform.Find("Hull").GetComponent<SpriteRenderer>();
-        InfoPanle.SetActive(false);
+        if(!isEnemy)InfoPanle.SetActive(false);
     }
 
     public void Select()

@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Indicator : MonoBehaviour
 {
@@ -6,13 +8,14 @@ public class Indicator : MonoBehaviour
     private Transform RadarRing;
     private Color tempWeaponColor;
     private Color tempRadarColor;
+    public bool show = false;
     void Start()
     {
         //取得環的顏色和物件
-        WeaponRing = transform.Find("WeaponRange/Ring");
-        RadarRing = transform.Find("RadarRange/Ring");
-        tempWeaponColor = WeaponRing.GetComponent<SpriteRenderer>().color;
-        tempRadarColor = RadarRing.GetComponent<SpriteRenderer>().color;
+        WeaponRing = transform.Find("WeaponRange");
+        RadarRing = transform.Find("RadarRange");
+        tempWeaponColor = new Color(1,0,0);
+        tempRadarColor = new Color(0.537f,0.572f,0.678f);
 
         //設定環的大小
         WeaponRing.localScale = new Vector3(transform.parent.GetComponent<ShipBase>().FireRange, transform.parent.GetComponent<ShipBase>().FireRange, 0);
@@ -25,17 +28,21 @@ public class Indicator : MonoBehaviour
         RadarRing.GetComponent<SpriteRenderer>().color = tempRadarColor;
 
     }
-    public void ShowRange(bool show) //被選中時顯示環帶 沒有則不顯示
+
+    void Update()
     {
         if (show)
         {
-            tempWeaponColor.a = 1;
-            tempRadarColor.a = 1;
-        }
-        else
-        {
-            tempWeaponColor.a = 0f;
-            tempRadarColor.a = 0f;
+            if (Input.GetKey(KeyCode.C))
+            {
+                tempWeaponColor.a = 0.5f;
+                tempRadarColor.a = 0.5f;
+            }
+            else
+            {
+                tempWeaponColor.a = 0f;
+                tempRadarColor.a = 0f;
+            }
         }
         WeaponRing.GetComponent<SpriteRenderer>().color = tempWeaponColor;
         RadarRing.GetComponent<SpriteRenderer>().color = tempRadarColor;
