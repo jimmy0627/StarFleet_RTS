@@ -20,6 +20,11 @@ public class SelectionBox : MonoBehaviour
     void Update()
     {
         HandleUnitSelection();
+        if (selectedUnits.Count() == 1 && selectedUnits[0]!=null)
+        {
+            transform.parent.Find("ShipInfoPanel").gameObject.SetActive(true);
+            transform.parent.Find("ShipInfoPanel").GetComponent<SingleShipInfo>().singleinfo(selectedUnits[0]);
+        }
     }
 
     void HandleUnitSelection()
@@ -57,10 +62,6 @@ public class SelectionBox : MonoBehaviour
             selectionBoxUI.gameObject.SetActive(false);
             SelectUnits();
             clickStartOnUI = false;
-            if (selectedUnits.Count() == 1)
-            {
-            selectedUnits[0].GetComponent<ShipBase>().Showinfo = true;
-            }
         }
     }
 
@@ -122,6 +123,10 @@ public class SelectionBox : MonoBehaviour
     // 取消選取
     void UnSelectUnits()
     {
+        if (selectedUnits.Count()==1)
+        {
+            transform.parent.Find("ShipInfoPanel").gameObject.SetActive(false);
+        }
         foreach (var obj in selectedUnits)
         {
             if (obj != null)
@@ -131,7 +136,7 @@ public class SelectionBox : MonoBehaviour
                     shipBase.Deselect();
                     shipBase.Showinfo = false;
                 }
-                obj.transform.Find("ShowRange").GetComponent<Indicator>().show=false;
+                obj.transform.Find("ShowRange").GetComponent<Indicator>().show = false;
             }
         }
         selectedUnits.Clear();

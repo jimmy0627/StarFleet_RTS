@@ -32,6 +32,6 @@ public class SingleShipInfo : MonoBehaviour
         FireRange.text = ship.FireRange.ToString();
         RadarRange.text = ship.RadarSize.ToString();
         HP.text = ship.HP.ToString();
-        ECM.text = ship.ECM.ToString();
+        ECM.text = ship.ECM.ToString(); 
     }
 }

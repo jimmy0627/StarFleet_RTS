@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class ShipBase : MonoBehaviour
 {
     public List<Vector3> TargetDes = new List<Vector3>();
-    public GameObject InfoPanle;
+    private GameObject InfoPanle;
     [SerializeField] private UnitHpBar HpBar;
     private SpriteRenderer sr;
     public NavMeshAgent agent;
@@ -31,8 +32,7 @@ public class ShipBase : MonoBehaviour
     void Awake()
     {
         sr = transform.Find("Hull").GetComponent<SpriteRenderer>();
-        if (!isEnemy) InfoPanle.SetActive(false);
-        else
+        if (isEnemy)
         {
             transform.Find("Hull").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
             transform.Find("Canvas").gameObject.SetActive(false);
@@ -47,11 +47,6 @@ public class ShipBase : MonoBehaviour
 
     public void Deselect()
     {
-        if (Showinfo)
-        {
-            InfoPanle.SetActive(false);
-            Showinfo = false;
-        }
         sr.color = Color.white; // 恢復原狀
     }
     void Start()
@@ -77,21 +72,19 @@ public class ShipBase : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (Showinfo)
-        {
-            InfoPanle.gameObject.GetComponent<SingleShipInfo>().singleinfo(gameObject);
-            InfoPanle.gameObject.SetActive(true);
-        }
         if (TargetDes.Any())
         {
             int count = TargetDes.Count() + 1;
             Vector3 target = TargetDes[0];
             float distance = Vector3.Distance(transform.position, target);
-            lr.positionCount = count;
-            lr.SetPosition(0, transform.position);
-            for (int i = 1; i < count; i++)
+            if (!isEnemy)
             {
-                lr.SetPosition(i, TargetDes[i - 1]);
+                lr.positionCount = count;
+                lr.SetPosition(0, transform.position);
+                for (int i = 1; i < count; i++)
+                {
+                    lr.SetPosition(i, TargetDes[i - 1]);
+                }
             }
             
             //設置轉向下一個路徑點  
@@ -103,7 +96,7 @@ public class ShipBase : MonoBehaviour
             else if (distance <= 1f)
             {
                 TargetDes.RemoveAt(0);
-                lr.positionCount = 0;
+                if(!isEnemy) lr.positionCount = 0;
             }
         }
         

@@ -61,12 +61,13 @@ public class EnemyAttack:MonoBehaviour
     {
         while (attacking != null)
         {
+            ECM = attacking.GetComponent<ShipBase>().ECM;
+            accurcy -=accurcy*ECM;
             Instantiate(transform.parent.GetComponent<ShipBase>().Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);
-            accurcy-=accurcy*ECM;
             if (aim  <= accurcy)
             {
-                attacking.GetComponent<ShipBase>().HP -= damage;
+                attacking.GetComponent<ShipBase>().TakeDamage(damage);
                 Debug.Log("attacking:" + attacking.name + "  hull=" + attacking.GetComponent<ShipBase>().HP + " attacked by:" + transform.parent.name + "hit");
             }
             if (transform.parent.GetComponent<ShipBase>().Shiptype == 1) attacking = MinByShipType(Targetlist);

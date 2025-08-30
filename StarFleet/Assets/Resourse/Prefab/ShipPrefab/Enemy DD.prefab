@@ -496,13 +496,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetDes: []
-  InfoPanle: {fileID: 0}
   HpBar: {fileID: 0}
   agent: {fileID: -9004538434741632197}
   lr: {fileID: 0}
   Bullet: {fileID: 3223021904740240960, guid: de0c0fa96d1b78149805ccbe166cdcd0, type: 3}
   FireRange: 5
-  damage: 5
+  damage: 10
   accurcy: 90
   CD: 1
   ProjectileSpeed: 10

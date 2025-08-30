@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.IO.Compression;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class Shipyard : MonoBehaviour
 {
+    public List<Vector3> GoToPoint = new List<Vector3>();
     public int mode;
     public GameObject Destroier;
     public int numberD;
@@ -14,7 +17,7 @@ public class Shipyard : MonoBehaviour
     public int numberB;
     private Vector3 delta;
     int counts = 0;
-    int dis = 1;
+    int dis = 3;
     void Start()
     {
         
@@ -33,7 +36,7 @@ public class Shipyard : MonoBehaviour
         counts += 60;
         if (counts >= 360)
         {
-            dis += 1;
+            dis += 3;
             counts = 0;
         }
         return delta;
@@ -42,24 +45,45 @@ public class Shipyard : MonoBehaviour
     {
         for (int i = 0; i < numberB; i++)
         {
-            if (Battleship!=null)
+            if (Battleship != null)
             {
-                Instantiate(Battleship, Spawnspread()+transform.position, Quaternion.identity);
+                Vector3 SpwanSpot = Spawnspread() + transform.position;
+                SpwanSpot.z = 0;
+                if (GoToPoint.Any())
+                {
+                    List<Vector3> copiedPath = new List<Vector3>(GoToPoint);
+                    Battleship.GetComponent<ShipBase>().TargetDes = copiedPath;
+                }
+                Instantiate(Battleship, SpwanSpot, Quaternion.identity);
             }
-            
+
         }
         for (int i = 0; i < numberC; i++)
         {
             if (Crusier!=null)
             {
-                Instantiate(Crusier, Spawnspread()+transform.position, Quaternion.identity);
+                Vector3 SpwanSpot = Spawnspread() + transform.position;
+                SpwanSpot.z = 0;
+                if (GoToPoint.Any())
+                {
+                    List<Vector3> copiedPath = new List<Vector3>(GoToPoint);
+                    Crusier.GetComponent<ShipBase>().TargetDes = copiedPath;
+                }
+                Instantiate(Crusier, SpwanSpot, Quaternion.identity);
             }
         }
         for (int i = 0; i < numberD; i++)
         {
             if (Destroier != null)
             {
-                Instantiate(Destroier, Spawnspread()+transform.position, Quaternion.identity);
+                Vector3 SpwanSpot = Spawnspread() + transform.position;
+                SpwanSpot.z = 0;
+                if (GoToPoint.Any())
+                {
+                    List<Vector3> copiedPath = new List<Vector3>(GoToPoint);
+                    Destroier.GetComponent<ShipBase>().TargetDes = GoToPoint;
+                }
+                Instantiate(Destroier, SpwanSpot, Quaternion.identity);
             }
         }
 

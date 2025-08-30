@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 4572957384785321038}
   - component: {fileID: 8465059248800461031}
   m_Layer: 0
-  m_Name: Player BB 1
+  m_Name: Player BB
   m_TagString: Self
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -733,7 +733,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetDes: []
-  InfoPanle: {fileID: 0}
   HpBar: {fileID: 0}
   agent: {fileID: 531452045104330676}
   lr: {fileID: 8465059248800461031}

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1004889298922173249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5295847491341945941}
+  - component: {fileID: 563006629878012620}
+  m_Layer: 0
+  m_Name: RedSpwanPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5295847491341945941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004889298922173249}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -59.1, y: 4.3, z: 0.28064525}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &563006629878012620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004889298922173249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b762d554ea45d84bb00b2ba0ecbd764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoToPoint:
+  - {x: -77.2, y: 28.2, z: 0}
+  - {x: -70.1, y: 48.8, z: 0}
+  - {x: -45.7, y: 58.1, z: 0}
+  - {x: -20.9, y: 30.4, z: 0}
+  mode: 1
+  Destroier: {fileID: 6575729658352201960, guid: ad56efa00b1ad404ca49c32e6cdf61c2, type: 3}
+  numberD: 4
+  Crusier: {fileID: 7783431276212390398, guid: 8004c0bd630acf1469c62bf8407addd7, type: 3}
+  numberC: 2
+  Battleship: {fileID: 2208123554075976262, guid: 996715fad75372f44b1eb48fed47ec4a, type: 3}
+  numberB: 1

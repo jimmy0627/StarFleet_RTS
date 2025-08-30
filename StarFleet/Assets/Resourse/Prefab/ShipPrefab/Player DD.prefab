@@ -779,7 +779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetDes: []
-  InfoPanle: {fileID: 0}
   HpBar: {fileID: 0}
   agent: {fileID: 833317830718617146}
   lr: {fileID: 1131566308639197348}
@@ -792,7 +791,7 @@ MonoBehaviour:
   RadarSize: 20
   HP: 100
   MaxHealth: 100
-  ECM: 20
+  ECM: 10
   speed: 4
   Rotaespeed: 50
   Shiptype: 1
