@@ -29,7 +29,8 @@ public class EnemyAI : MonoBehaviour
         if (gameObject.transform.Find("Radar").GetComponent<EnemySenscor>().Radarimage.Count >= 1) //若雷達範圍內存在目標
         {
             Target = gameObject.transform.Find("Radar").GetComponent<EnemySenscor>().Radarimage[0];
-            TargetDes[0] = Target.transform.position;
+            TargetDes = null;
+            agent.SetDestination(Target.transform.position);
         }
         RotateFaceMoveDIR();
     }

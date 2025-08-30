@@ -54,6 +54,7 @@ public class Shipyard : MonoBehaviour
                     List<Vector3> copiedPath = new List<Vector3>(GoToPoint);
                     Battleship.GetComponent<ShipBase>().TargetDes = copiedPath;
                 }
+                else Battleship.GetComponent<ShipBase>().TargetDes = new List<Vector3>();
                 Instantiate(Battleship, SpwanSpot, Quaternion.identity);
             }
 
@@ -69,6 +70,7 @@ public class Shipyard : MonoBehaviour
                     List<Vector3> copiedPath = new List<Vector3>(GoToPoint);
                     Crusier.GetComponent<ShipBase>().TargetDes = copiedPath;
                 }
+                else Crusier.GetComponent<ShipBase>().TargetDes = new List<Vector3>();
                 Instantiate(Crusier, SpwanSpot, Quaternion.identity);
             }
         }
@@ -83,6 +85,7 @@ public class Shipyard : MonoBehaviour
                     List<Vector3> copiedPath = new List<Vector3>(GoToPoint);
                     Destroier.GetComponent<ShipBase>().TargetDes = GoToPoint;
                 }
+                else Destroier.GetComponent<ShipBase>().TargetDes = new List<Vector3>();
                 Instantiate(Destroier, SpwanSpot, Quaternion.identity);
             }
         }
