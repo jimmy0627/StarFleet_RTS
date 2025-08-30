@@ -1,4 +1,4 @@
-using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,16 +21,15 @@ public class ScoreBar : MonoBehaviour
         {
             TotalScore += item.GetComponent<BattlePoint>().status;
         }
-        if (TotalScore < 0) BlueSideBar.GetComponent<Image>().fillAmount -= 0.1f*Time.deltaTime;
-        else if (TotalScore > 0) RedSideBar.GetComponent<Image>().fillAmount -= 0.1f*Time.deltaTime;
+        if (TotalScore < 0) BlueSideBar.GetComponent<Image>().fillAmount -= 0.05f*Time.deltaTime;
+        else if (TotalScore > 0) RedSideBar.GetComponent<Image>().fillAmount -= 0.05f*Time.deltaTime;
         new WaitForSeconds(5);
-        TotalScore = 0;
-    }
-    private IEnumerator GetScore()
-    {
-        if (TotalScore < 0) BlueSideBar.GetComponent<Image>().fillAmount -= 0.1f;
-        else if (TotalScore > 0) RedSideBar.GetComponent<Image>().fillAmount -= 0.1f;
-        yield return new WaitForSeconds(5);
+        if (BlueSideBar.GetComponent<Image>().fillAmount <= 0.01f)
+        {
+            SceneManager.LoadScene("Lose");
+        }
+        else if (RedSideBar.GetComponent<Image>().fillAmount <= 0.01f) SceneManager.LoadScene("Victory");
 
+        TotalScore = 0;
     }
 }

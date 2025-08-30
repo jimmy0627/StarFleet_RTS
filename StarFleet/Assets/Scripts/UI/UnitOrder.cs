@@ -43,7 +43,7 @@ public class UnitOrder : MonoBehaviour
             foreach (var item in Unitinlist)
             {
                 List<Vector3> copiedPath = new List<Vector3>(TargetDes);
-                item.transform.GetComponent<ShipBase>().TargetDes = copiedPath;
+                if(item!=null) item.transform.GetComponent<ShipBase>().TargetDes = copiedPath;
             }
 
             TargetDes.Clear(); // 清空原始路徑

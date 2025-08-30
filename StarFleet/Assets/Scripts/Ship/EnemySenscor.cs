@@ -18,11 +18,11 @@ public class EnemySenscor : MonoBehaviour
     {
         if (Radarimage.Any())
         {
-            foreach (var item in Radarimage)
+            for(int i=0;i<Radarimage.Count();i++)
             {
-                if (item.gameObject.GetComponent<ShipBase>().HP==0)
+                if (Radarimage[i].gameObject.GetComponent<ShipBase>().HP==0 && Radarimage[i]!=null)
                 {
-                    Radarimage.Remove(item);
+                    Radarimage.Remove(Radarimage[i]);
                 }
             }
         }

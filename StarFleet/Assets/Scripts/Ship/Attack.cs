@@ -76,7 +76,7 @@ public class Attack : MonoBehaviour
         while (attacking != null && !HoldFire)
         {
             ECM = attacking.GetComponent<ShipBase>().ECM;
-            accurcy -= ECM;
+            accurcy-=accurcy*ECM;
             Instantiate(Base.Bullet, transform.position, Quaternion.identity, transform); //生成子彈
             var aim = Random.Range(0, 100);
             if (aim <= accurcy)

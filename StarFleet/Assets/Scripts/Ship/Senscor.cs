@@ -25,12 +25,16 @@ public class Senscor : MonoBehaviour
     {
         if (Radarimage.Any())
         {
-            foreach (var item in Radarimage)
+            for (int i = 0; i < Radarimage.Count(); i++)
             {
-                if (item.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
+                if (Radarimage[i].gameObject.GetComponent<ShipBase>().HP == 0 && Radarimage[i] != null)
                 {
-                    SpriteRenderer sr = item.transform.Find("Hull").GetComponent<SpriteRenderer>();
-                    sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+                    Radarimage.Remove(Radarimage[i]);
+                }
+                else
+                {
+                    Radarimage[i].transform.Find("Hull").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    Radarimage[i].transform.Find("Canvas").gameObject.SetActive(true);
                 }
             }
         }
@@ -44,9 +48,11 @@ public class Senscor : MonoBehaviour
                 SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
                 Radarimage.Add(collision.transform);  //進入碰撞圈，加入雷達範圍
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);//不透明
+                collision.transform.Find("Canvas").gameObject.SetActive(true);
             }
         }
     }
+    /*
     void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.transform.GetComponent<ShipBase>() != null)
@@ -55,9 +61,11 @@ public class Senscor : MonoBehaviour
             {
                 SpriteRenderer sr = collision.transform.Find("Hull").GetComponent<SpriteRenderer>();
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);//不透明
+                collision.transform.Find("Canvas").gameObject.SetActive(true);
             }
         }
     }
+    */
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy") != transform.parent.GetComponent<ShipBase>().isEnemy)
@@ -67,6 +75,7 @@ public class Senscor : MonoBehaviour
             if (sr != null)
             {
                 sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0f);//不透明
+                collision.transform.Find("Canvas").gameObject.SetActive(false);
             }
         }
 
